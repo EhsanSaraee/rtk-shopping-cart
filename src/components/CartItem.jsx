@@ -21,7 +21,7 @@ const CartItem = ({ id, img, title, price, amount }) => {
                   style={{ objectFit: 'cover', width: '5rem', height: '5rem' }}
                />
             </div>
-            <div className="col-sm-2" margin>
+            <div className="col-sm-2">
                <h5>{title}</h5>
                <h5 style={{ color: '#617d98' }}>${price}</h5>
                <MDBIcon

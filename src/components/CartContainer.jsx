@@ -1,9 +1,17 @@
 import { useCart } from 'hooks/cart';
 import CartItem from 'components/CartItem';
 import { MDBBtn } from 'mdb-react-ui-kit';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { getCartTotal } from 'features/cartSlice';
 
 const CartContainer = () => {
    const { items, totalAmount } = useCart();
+   const dispatch = useDispatch();
+
+   useEffect(() => {
+      dispatch(getCartTotal());
+   }, [dispatch]);
 
    return (
       <>
