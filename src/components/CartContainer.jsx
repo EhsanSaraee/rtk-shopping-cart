@@ -3,7 +3,7 @@ import CartItem from 'components/CartItem';
 import { MDBBtn } from 'mdb-react-ui-kit';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { clearCart, getCartTotal } from 'features/cartSlice';
+import { clearCart, getCartItems, getCartTotal } from 'features/cartSlice';
 
 const CartContainer = () => {
    const { items, totalAmount } = useCart();
@@ -12,6 +12,17 @@ const CartContainer = () => {
    useEffect(() => {
       dispatch(getCartTotal());
    }, [dispatch, items]);
+
+   if (items.length === 0) {
+      return (
+         <>
+            <h3 className="fs-bold mt-4">Your cart is empty</h3>
+            <MDBBtn onClick={() => dispatch(getCartItems())} className="mx-2">
+               Go Shopping
+            </MDBBtn>
+         </>
+      );
+   }
 
    return (
       <>
