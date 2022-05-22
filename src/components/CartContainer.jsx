@@ -3,7 +3,7 @@ import CartItem from 'components/CartItem';
 import { MDBBtn } from 'mdb-react-ui-kit';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { getCartTotal } from 'features/cartSlice';
+import { clearCart, getCartTotal } from 'features/cartSlice';
 
 const CartContainer = () => {
    const { items, totalAmount } = useCart();
@@ -11,7 +11,7 @@ const CartContainer = () => {
 
    useEffect(() => {
       dispatch(getCartTotal());
-   }, [dispatch]);
+   }, [dispatch, items]);
 
    return (
       <>
@@ -36,6 +36,7 @@ const CartContainer = () => {
             <MDBBtn
                color="danger"
                style={{ width: '140px', marginTop: '50px' }}
+               onClick={() => dispatch(clearCart())}
             >
                Clear Cart
             </MDBBtn>

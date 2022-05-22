@@ -1,6 +1,14 @@
+import { decrease, increase, remove } from 'features/cartSlice';
 import { MDBIcon } from 'mdb-react-ui-kit';
+import { useDispatch } from 'react-redux';
 
 const CartItem = ({ id, img, title, price, amount }) => {
+   const dispatch = useDispatch();
+
+   const incHandler = () => dispatch(increase(id));
+   const decHandler = () => dispatch(decrease(id));
+   const removeHandler = () => dispatch(remove(id));
+
    return (
       <section
          style={{
@@ -28,12 +36,23 @@ const CartItem = ({ id, img, title, price, amount }) => {
                   fas
                   icon="trash"
                   style={{ cursor: 'pointer', color: 'red' }}
+                  onClick={removeHandler}
                />
             </div>
             <div className="col-sm-8">
-               <MDBIcon style={{ cursor: 'pointer' }} fas icon="chevron-up" />
+               <MDBIcon
+                  style={{ cursor: 'pointer' }}
+                  fas
+                  icon="chevron-up"
+                  onClick={incHandler}
+               />
                <p style={{ marginTop: '10px' }}>{amount}</p>
-               <MDBIcon fas icon="chevron-down" style={{ cursor: 'pointer' }} />
+               <MDBIcon
+                  fas
+                  icon="chevron-down"
+                  style={{ cursor: 'pointer' }}
+                  onClick={decHandler}
+               />
             </div>
          </div>
       </section>
